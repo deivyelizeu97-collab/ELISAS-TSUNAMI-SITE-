@@ -255,5 +255,15 @@
 <a href="https://wa.me/244952497779" target="_blank" style="position:fixed;bottom:20px;right:20px;background:#25D366;color:white;padding:15px 20px;border-radius:50px;text-decoration:none;font-weight:bold;z-index:9999;">
   WhatsApp
 </a>
+   <script>
+function solicitarJogo(nomeJogo) {
+  const numero = "244952497779";
+  const mensagem = "Olá, ELISAS TSUNAMI! Quero solicitar o jogo: " + nomeJogo;
+
+  const url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem);
+
+  window.location.href = url;
+}
+   </script> 
 </body>
 </html>
