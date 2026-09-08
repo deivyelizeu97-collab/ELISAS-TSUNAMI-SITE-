@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ELISAS TSUNAMI - Jogos, acessórios e assistência técnica para consoles.">
+  <meta name="theme-color" content="#080b14">
+  <title>ELISAS TSUNAMI | Gaming & Assistência Técnica</title>
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#080b14;
+      --card:#111625;
+      --card2:#151b2d;
+      --text:#f4f7ff;
+      --muted:#aab2c7;
+      --accent:#7c5cff;
+      --accent2:#00d9ff;
+      --border:rgba(255,255,255,.09);
+      --shadow:0 18px 50px rgba(0,0,0,.35);
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%,rgba(124,92,255,.22),transparent 30%),
+        radial-gradient(circle at 90% 10%,rgba(0,217,255,.12),transparent 28%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1120px,92%);margin:auto}
+
+    header{
+      position:sticky;top:0;z-index:1000;
+      background:rgba(8,11,20,.88);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--border)
+    }
+    nav{
+      min-height:70px;display:flex;align-items:center;
+      justify-content:space-between;gap:20px
+    }
+    .logo{
+      font-weight:900;letter-spacing:1px;font-size:19px;
+      white-space:nowrap
+    }
+    .logo span{color:var(--accent2)}
+    .menu{display:flex;gap:22px;align-items:center}
+    .menu a{color:var(--muted);font-weight:700;font-size:14px}
+    .menu a:hover{color:white}
+    .menu-btn{
+      display:none;background:none;border:1px solid var(--border);
+      color:white;border-radius:10px;padding:9px 12px;font-size:20px
+    }
+
+    .hero{padding:85px 0 70px}
+    .hero-grid{
+      display:grid;grid-template-columns:1.25fr .75fr;
+      gap:35px;align-items:center
+    }
+    .badge{
+      display:inline-block;padding:7px 12px;border:1px solid rgba(0,217,255,.3);
+      background:rgba(0,217,255,.07);border-radius:999px;
+      color:var(--accent2);font-size:12px;font-weight:800;margin-bottom:18px
+    }
+    h1{font-size:clamp(38px,6vw,70px);line-height:1.02;margin-bottom:20px}
+    h1 span{
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      -webkit-background-clip:text;background-clip:text;color:transparent
+    }
+    .hero p{font-size:18px;color:var(--muted);max-width:650px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:48px;padding:0 18px;border-radius:12px;
+      font-weight:800;border:1px solid var(--border)
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--accent),#5c41dd);
+      box-shadow:0 10px 30px rgba(124,92,255,.25)
+    }
+    .btn-secondary{background:var(--card)}
+    .btn:hover{transform:translateY(-1px)}
+
+    .hero-card{
+      background:linear-gradient(145deg,rgba(124,92,255,.18),rgba(0,217,255,.06));
+      border:1px solid var(--border);border-radius:24px;
+      padding:30px;box-shadow:var(--shadow)
+    }
+    .hero-card .controller{font-size:82px;text-align:center;margin-bottom:10px}
+    .hero-card h3{text-align:center;font-size:23px}
+    .hero-card p{text-align:center;color:var(--muted);margin-top:7px}
+
+    section{padding:72px 0}
+    .section-head{margin-bottom:28px}
+    .section-head h2{font-size:32px;margin-bottom:7px}
+    .section-head p{color:var(--muted)}
+    .cards{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+    }
+    .card{
+      background:rgba(17,22,37,.9);border:1px solid var(--border);
+      border-radius:18px;padding:23px;box-shadow:0 10px 35px rgba(0,0,0,.15)
+    }
+    .icon{font-size:30px;margin-bottom:12px}
+    .card h3{margin-bottom:7px}
+    .card p{color:var(--muted);font-size:14px}
+    .card ul{list-style:none;color:var(--muted);margin-top:13px;font-size:14px}
+    .card li{padding:5px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+    .card li:last-child{border-bottom:0}
+
+    .toolbar{
+      display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px
+    }
+    input,select{
+      width:100%;background:var(--card);border:1px solid var(--border);
+      color:white;border-radius:12px;padding:13px 14px;outline:none
+    }
+    .search{flex:1;min-width:230px}
+    .filter{width:220px}
+    .games{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:14px
+    }
+    .game{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:15px;padding:16px;min-height:155px;
+      display:flex;flex-direction:column;justify-content:space-between
+    }
+    .game .platform{
+      color:var(--accent2);font-size:11px;font-weight:900;text-transform:uppercase
+    }
+    .game h3{font-size:16px;margin:7px 0}
+    .game .price{font-weight:900}
+    .game .ask{
+      color:#fff;background:rgba(124,92,255,.18);
+      border:1px solid rgba(124,92,255,.35);
+      padding:8px;border-radius:9px;text-align:center;margin-top:10px;font-size:12px
+    }
+    .empty{color:var(--muted);padding:25px;text-align:center;display:none}
+
+    .repair{
+      display:grid;grid-template-columns:1fr 1fr;gap:20px
+    }
+    .contact-box{
+      background:linear-gradient(145deg,var(--card),var(--card2));
+      border:1px solid var(--border);border-radius:20px;padding:25px
+    }
+    .contact-box p{color:var(--muted);margin:8px 0 18px}
+    .contact-list{display:grid;gap:10px;color:var(--muted)}
+    .contact-list strong{color:white}
+
+    footer{
+      border-top:1px solid var(--border);padding:30px 0;color:var(--muted);
+      text-align:center;font-size:13px
+    }
+    .wa{
+      position:fixed;right:18px;bottom:18px;z-index:999;
+      width:58px;height:58px;border-radius:50%;
+      background:#25D366;color:white;display:flex;align-items:center;
+      justify-content:center;font-size:29px;
+      box-shadow:0 10px 30px rgba(0,0,0,.4)
+    }
+
+    @media(max-width:850px){
+      .menu{display:none;position:absolute;top:70px;left:0;right:0;
+        background:#0b0f1b;padding:15px 4%;border-bottom:1px solid var(--border);
+        flex-direction:column;align-items:flex-start}
+      .menu.open{display:flex}
+      .menu-btn{display:block}
+      .hero-grid,.repair{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .games{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:520px){
+      .hero{padding:60px 0 45px}
+      section{padding:52px 0}
+      .games{grid-template-columns:1fr}
+      .filter{width:100%}
+      h1{font-size:42px}
+      .hero p{font-size:16px}
+      .hero-card{padding:22px}
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <nav>
+      <a class="logo" href="#inicio">ELISAS <span>TSUNAMI</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
+      <div class="menu" id="menu">
+        <a href="#inicio">Início</a>
+        <a href="#jogos">Jogos</a>
+        <a href="#acessorios">Acessórios</a>
+        <a href="#assistencia">Assistência</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge">GAMING • ACESSÓRIOS • ASSISTÊNCIA</span>
+        <h1>O teu universo <span>gaming</span>, num só lugar.</h1>
+        <p>
+          Jogos para PSP, PlayStation, Xbox e outras plataformas.
+          Também fazemos reparação e assistência técnica para controles,
+          consoles, placas e componentes.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#jogos">🎮 Ver jogos</a>
+          <a class="btn btn-secondary" href="https://wa.me/244952497779?text=Olá%20ELISAS%20TSUNAMI,%20preciso%20de%20informações." target="_blank">💬 WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="controller">🎮</div>
+        <h3>ELISAS TSUNAMI</h3>
+        <p>Gaming e assistência técnica.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="jogos">
+    <div class="container">
+      <div class="section-head">
+        <h2>🎮 Jogos</h2>
+        <p>Pesquisa pelo nome ou filtra pela plataforma.</p>
+      </div>
+
+      <div class="toolbar">
+        <div class="search">
+          <input id="search" type="search" placeholder="Pesquisar jogo...">
+        </div>
+        <div class="filter">
+          <select id="platform">
+            <option value="Todos">Todas as plataformas</option>
+            <option>PlayStation</option>
+            <option>Xbox</option>
+            <option>PSP</option>
+            <option>PC</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="games" id="games"></div>
+      <div class="empty" id="empty">Nenhum jogo encontrado.</div>
+    </div>
+  </section>
+
+  <section id="acessorios">
+    <div class="container">
+      <div class="section-head">
+        <h2>🕹️ Acessórios</h2>
+        <p>Equipamentos para melhorar a tua experiência de jogo.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="icon">🎮</div>
+          <h3>Controles</h3>
+          <p>Controles para diferentes consoles e necessidades.</p>
+          <ul><li>PlayStation</li><li>Xbox</li><li>Outros modelos</li></ul>
+        </article>
+        <article class="card">
+          <div class="icon">🎧</div>
+          <h3>Headsets</h3>
+          <p>Áudio para jogos, comunicação e entretenimento.</p>
+          <ul><li>Gaming</li><li>Microfone</li><li>Conforto</li></ul>
+        </article>
+        <article class="card">
+          <div class="icon">🔌</div>
+          <h3>Cabos e componentes</h3>
+          <p>Acessórios e peças para instalação e manutenção.</p>
+          <ul><li>Cabos</li><li>Fontes</li><li>Componentes</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="assistencia">
+    <div class="container">
+      <div class="section-head">
+        <h2>🔧 Assistência técnica</h2>
+        <p>Serviços para recuperar e manter os teus equipamentos.</p>
+      </div>
+      <div class="repair">
+        <div class="contact-box">
+          <h3>Solicitar reparação</h3>
+          <p>Envia uma mensagem pelo WhatsApp e descreve o problema do teu equipamento.</p>
+          <a class="btn btn-primary" href="https://wa.me/244952497779?text=Olá%20ELISAS%20TSUNAMI.%20Quero%20solicitar%20uma%20reparação.%0AEquipamento:%20%0AProblema:%20" target="_blank">
+            Solicitar reparação
+          </a>
+        </div>
+        <div class="contact-box">
+          <h3>Serviços</h3>
+          <div class="contact-list">
+            <div>🔧 <strong>Controles:</strong> diagnóstico e reparação</div>
+            <div>🎮 <strong>Consoles:</strong> assistência técnica</div>
+            <div>⚡ <strong>Placas:</strong> diagnóstico de componentes</div>
+            <div>🛠️ <strong>Componentes:</strong> manutenção e substituição</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="container">
+      <div class="section-head">
+        <h2>📞 Contacto</h2>
+        <p>Fala diretamente com a ELISAS TSUNAMI.</p>
+      </div>
+      <div class="contact-box">
+        <div class="contact-list">
+          <div>💬 WhatsApp: <strong>+244 952 497 779</strong></div>
+          <div>🎮 Atendimento: <strong>Jogos e acessórios</strong></div>
+          <div>🔧 Atendimento: <strong>Assistência técnica</strong></div>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://wa.me/244952497779?text=Olá%20ELISAS%20TSUNAMI,%20quero%20saber%20mais." target="_blank">Falar no WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    © <span id="year"></span> ELISAS TSUNAMI. Todos os direitos reservados.
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/244952497779?text=Olá%20ELISAS%20TSUNAMI,%20preciso%20de%20ajuda." target="_blank" aria-label="WhatsApp">☏</a>
+
+<script>
+  const jogos = [
+    ["EA Sports FC 26","PlayStation","Consultar"],
+    ["Grand Theft Auto V","PlayStation","Consultar"],
+    ["Grand Theft Auto V","Xbox","Consultar"],
+    ["God of War Ragnarök","PlayStation","Consultar"],
+    ["Marvel's Spider-Man 2","PlayStation","Consultar"],
+    ["Gran Turismo 7","PlayStation","Consultar"],
+    ["The Last of Us Part I","PlayStation","Consultar"],
+    ["The Last of Us Part II","PlayStation","Consultar"],
+    ["Call of Duty: Black Ops 6","PlayStation","Consultar"],
+    ["Call of Duty: Black Ops 6","Xbox","Consultar"],
+    ["Call of Duty: Modern Warfare III","PlayStation","Consultar"],
+    ["EA Sports FC 25","PlayStation","Consultar"],
+    ["EA Sports FC 25","Xbox","Consultar"],
+    ["eFootball","PlayStation","Consultar"],
+    ["Tekken 8","PlayStation","Consultar"],
+    ["Mortal Kombat 1","PlayStation","Consultar"],
+    ["Street Fighter 6","PlayStation","Consultar"],
+    ["NBA 2K25","PlayStation","Consultar"],
+    ["WWE 2K25","PlayStation","Consultar"],
+    ["Forza Horizon 5","Xbox","Consultar"],
+    ["Halo Infinite","Xbox","Consultar"],
+    ["Forza Motorsport","Xbox","Consultar"],
+    ["Gears 5","Xbox","Consultar"],
+    ["Sea of Thieves","Xbox","Consultar"],
+    ["Minecraft","Xbox","Consultar"],
+    ["Minecraft","PlayStation","Consultar"],
+    ["Red Dead Redemption 2","PlayStation","Consultar"],
+    ["Assassin's Creed Mirage","PlayStation","Consultar"],
+    ["Resident Evil 4","PlayStation","Consultar"],
+    ["Resident Evil Village","PlayStation","Consultar"],
+    ["Elden Ring","PlayStation","Consultar"],
+    ["Sekiro: Shadows Die Twice","PlayStation","Consultar"],
+    ["Dark Souls III","PlayStation","Consultar"],
+    ["Hogwarts Legacy","PlayStation","Consultar"],
+    ["Cyberpunk 2077","PlayStation","Consultar"],
+    ["The Witcher 3","PlayStation","Consultar"],
+    ["Ghost of Tsushima","PlayStation","Consultar"],
+    ["Uncharted 4","PlayStation","Consultar"],
+    ["Bloodborne","PlayStation","Consultar"],
+    ["Days Gone","PlayStation","Consultar"],
+    ["Death Stranding","PlayStation","Consultar"],
+    ["Final Fantasy VII Rebirth","PlayStation","Consultar"],
+    ["Final Fantasy XVI","PlayStation","Consultar"],
+    ["Dragon Ball: Sparking! ZERO","PlayStation","Consultar"],
+    ["Naruto Storm Connections","PlayStation","Consultar"],
+    ["Tekken 7","PlayStation","Consultar"],
+    ["GTA: Liberty City Stories","PSP","Consultar"],
+    ["GTA: Vice City Stories","PSP","Consultar"],
+    ["God of War: Chains of Olympus","PSP","Consultar"],
+    ["God of War: Ghost of Sparta","PSP","Consultar"],
+    ["Tekken 6","PSP","Consultar"],
+    ["Naruto Ultimate Ninja Heroes","PSP","Consultar"],
+    ["Naruto Shippuden: Ultimate Ninja Impact","PSP","Consultar"],
+    ["Dragon Ball Z: Shin Budokai","PSP","Consultar"],
+    ["Dragon Ball Z: Tenkaichi Tag Team","PSP","Consultar"],
+    ["WWE SmackDown vs. Raw 2011","PSP","Consultar"],
+    ["Need for Speed: Most Wanted","PSP","Consultar"],
+    ["Need for Speed: Carbon","PSP","Consultar"],
+    ["Need for Speed: Undercover","PSP","Consultar"],
+    ["Midnight Club 3","PSP","Consultar"],
+    ["PES 2014","PSP","Consultar"],
+    ["FIFA 14","PSP","Consultar"],
+    ["Daxter","PSP","Consultar"],
+    ["Crisis Core: Final Fantasy VII","PSP","Consultar"],
+    ["Metal Gear Solid: Peace Walker","PSP","Consultar"],
+    ["LittleBigPlanet","PSP","Consultar"],
+    ["Burnout Legends","PSP","Consultar"],
+    ["God of War","PlayStation","Consultar"],
+    ["God of War II","PlayStation","Consultar"],
+    ["Uncharted: The Lost Legacy","PlayStation","Consultar"],
+    ["Ratchet & Clank: Rift Apart","PlayStation","Consultar"],
+    ["Returnal","PlayStation","Consultar"],
+    ["Horizon Forbidden West","PlayStation","Consultar"],
+    ["Horizon Zero Dawn","PlayStation","Consultar"],
+    ["Deathloop","PlayStation","Consultar"],
+    ["Control","PlayStation","Consultar"],
+    ["Far Cry 6","PlayStation","Consultar"],
+    ["Watch Dogs: Legion","PlayStation","Consultar"],
+    ["Dying Light 2","PlayStation","Consultar"],
+    ["Resident Evil 2","PlayStation","Consultar"],
+    ["Resident Evil 3","PlayStation","Consultar"],
+    ["Resident Evil 7","PlayStation","Consultar"],
+    ["Devil May Cry 5","PlayStation","Consultar"],
+    ["Mafia: Definitive Edition","PlayStation","Consultar"],
+    ["Lies of P","PlayStation","Consultar"],
+    ["Armored Core VI","PlayStation","Consultar"],
+    ["Star Wars Jedi: Survivor","PlayStation","Consultar"],
+    ["Kena: Bridge of Spirits","PlayStation","Consultar"],
+    ["It Takes Two","PlayStation","Consultar"],
+    ["A Way Out","PlayStation","Consultar"],
+    ["Overcooked! 2","PlayStation","Consultar"],
+    ["Rocket League","PlayStation","Consultar"],
+    ["Fortnite","PlayStation","Consultar"],
+    ["Apex Legends","PlayStation","Consultar"],
+    ["Fall Guys","PlayStation","Consultar"],
+    ["Valorant","PC","Consultar"],
+    ["Counter-Strike 2","PC","Consultar"],
+    ["League of Legends","PC","Consultar"],
+    ["Dota 2","PC","Consultar"],
+    ["PUBG","PC","Consultar"],
+    ["Euro Truck Simulator 2","PC","Consultar"],
+    ["Grand Theft Auto IV","PC","Consultar"],
+    ["Grand Theft Auto San Andreas","PC","Consultar"],
+    ["FIFA 23","PC","Consultar"],
+    ["The Sims 4","PC","Consultar"]
+  ];
+
+  const gamesEl = document.getElementById("games");
+  const emptyEl = document.getElementById("empty");
+  const searchEl = document.getElementById("search");
+  const platformEl = document.getElementById("platform");
+
+  function renderGames(){
+    const q = searchEl.value.toLowerCase().trim();
+    const platform = platformEl.value;
+
+    const filtered = jogos.filter(j => {
+      const nameOK = j[0].toLowerCase().includes(q);
+      const platformOK = platform === "Todos" || j[1] === platform;
+      return nameOK && platformOK;
+    });
+
+    gamesEl.innerHTML = filtered.map(j => {
+      const msg = encodeURIComponent(
+        `Olá ELISAS TSUNAMI, quero saber o preço/disponibilidade do jogo: ${j[0]} (${j[1]}).`
+      );
+      return `
+        <article class="game">
+          <div>
+            <div class="platform">${j[1]}</div>
+            <h3>${j[0]}</h3>
+          </div>
+          <div>
+            <div class="price">${j[2]}</div>
+            <a class="ask" href="https://wa.me/244952497779?text=${msg}" target="_blank">
+              Consultar no WhatsApp
+            </a>
+          </div>
+        </article>
+      `;
+    }).join("");
+
+    emptyEl.style.display = filtered.length ? "none" : "block";
+  }
+
+  searchEl.addEventListener("input", renderGames);
+  platformEl.addEventListener("change", renderGames);
+
+  document.getElementById("menuBtn").addEventListener("click", () => {
+    document.getElementById("menu").classList.toggle("open");
+  });
+
+  document.querySelectorAll(".menu a").forEach(a => {
+    a.addEventListener("click", () => document.getElementById("menu").classList.remove("open"));
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+  renderGames();
+</script>
+</body>
+</html>
